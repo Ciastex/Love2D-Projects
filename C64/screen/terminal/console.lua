@@ -47,6 +47,9 @@ function Console:new(fg, bg, frame_cols, frame_rows, char_width, accept_input_ha
 
     self.dialogs = {}
     self.dialogs.guru = GuruMeditiationDialog(self, {x = 2, y = 2}, 1, "HACKING DETECTED", 0)
+    
+    self.widgets = {}
+    self.widgets.countdown = CountdownWidget((self.actual_columns * self.font_width) - 100, self.font_height * 2, Color(255, 255, 0))
 
     for y = 1, self.actual_rows do
         self.vgabuffer[y] = { }
@@ -144,6 +147,10 @@ function Console:update(dt)
     for i, v in pairs(self.dialogs) do
         self.dialogs[i]:update(dt)
     end
+    
+    for i, v in pairs(self.widgets) do
+        self.widgets[i]:update(dt)
+    end
 end
 
 function Console:draw()   
@@ -154,7 +161,13 @@ function Console:draw()
         self.cursor:draw()
     end
 
-    self.dialogs.guru:draw()
+    for i, v in pairs(self.dialogs) do
+        self.dialogs[i]:draw()
+    end
+    
+    for i, v in pairs(self.widgets) do
+        self.widgets[i]:draw()
+    end
 end
 
 function Console:drawFrame()
@@ -211,7 +224,7 @@ end
 function Console:setAllCellsToColor(r, g, b, a)
     for y = 1, self.actual_rows do
         for x = 1, self.actual_columns do
-            self.vgabuffer[y][x].fg = Color(r, g, b, a):toRGBA()
+            self.vgabuffer[y][x].fg = Color(r, g, b, a)
         end
     end
 end

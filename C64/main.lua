@@ -23,6 +23,7 @@ end
 
 function loadFonts()
     _G.managers.font:loadFont("terminal", "c64.ttf", 16)
+    _G.managers.font:loadFont("countdown",  "c64.ttf", 36)
 end
 
 function love.load()

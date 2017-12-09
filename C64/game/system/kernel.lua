@@ -2,8 +2,11 @@ Object = require("libs.object")
 Kernel = Object:extend()
 
 require("game.system.bootsequence")
+
 require("screen.terminal.console")
 require("screen.color")
+
+require("screen.widgets.widget_countdown")
 
 function Kernel:load()
     self.display_shader = love.graphics.newShader("resources/shaders/crt.fs")
@@ -60,8 +63,19 @@ function Kernel:handleCommand(string)
     coroutine.run(
         function()
             if string == "DEBUG" then
-                self.console.dialogs.guru:show("LOW-LEVEL SYSTEM ROUTINE ACTIVE\nUNSUPPORTED!", 3000)
+                self.console.dialogs.guru:show("ACTIVATING HACKING MODE", 3000)
                 coroutine.waitForSignal(coroutine.signals.DIALOG_HIDDEN)
+                self.console:setfg(255, 255, 0, 255)
+                self.console:setbg(158, 38, 0, 255)
+                self.console:setAllCellsToColor(255, 255, 0, 255)
+                
+                self.console.widgets.countdown:startCountdown(5000,
+                    function()
+                        self.console:resetfg()
+                        self.console:resetbg()
+                        self.console:setAllCellsToColor(unpack(self.console.fg:toRGBA2()))
+                    end
+                )
             end
             self.console:puts("> ")
         end
