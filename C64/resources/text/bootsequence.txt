@@ -1,0 +1,28 @@
+WAIT 0.1|COMMODORE VISION 64 DIGITAL SYSTEM
+WAIT 0.0| | 
+WAIT 0.0|[%MEMORY]
+WAIT 0.0 $| RAM DETECTED.
+WAIT 0.1 $|Please wait. Initializing...
+WAIT 0.2 $|
+WAIT 0.1|Initializing core functions
+TYPED 0.04|...
+WAIT 0.1 $| OK.
+WAIT 0.0 $|
+WAIT 0.1|Enabling CPU extended functions
+TYPED 0.03|...
+WAIT 0.1 $| OK.
+
+WAIT 0.0|Initializing HDD
+TYPED 0.04|...
+WAIT 0.1 $| OK.
+WAIT 0.1|Initializing modem
+TYPED 0.04|...
+WAIT 0.1 $| OK.
+WAIT 0.0 $|
+WAIT 0.3 $|Maximum transfer rate is 56.6K
+WAIT 0.0 $|
+WAIT 0.0|Synchronizing threads
+TYPED 0.07 $|...
+WAIT 0.0 $|
+TYPED 0.03 $|SYSTEM READY.
+WAIT 0.0 $|
