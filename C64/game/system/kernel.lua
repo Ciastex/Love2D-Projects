@@ -18,7 +18,6 @@ function Kernel:new()
         function()
             self.bootsequence = BootSequence(self.console, 
                 function()
-                    self.console:setfg(127, 127, 127, 255)
                     coroutine.run(
                         function()
                             self.console:puts("> ")
